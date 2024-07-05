@@ -4,12 +4,7 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyHomePage());
 
-class MyHomePage extends StatefulWidget {
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePage extends StatelessWidget {
   final List<Transcation> transaction = [
     Transcation(
       id: 't1',
@@ -25,10 +20,10 @@ class _MyHomePageState extends State<MyHomePage> {
     )
   ];
 
-  String titleInput = '';
-  String amountInput = '';
   @override
   Widget build(BuildContext context) {
+    String titleInput = '';
+    String amountInput = '';
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
