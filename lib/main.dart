@@ -1,29 +1,15 @@
-import 'package:expense_tracker/transcation.dart';
-import 'package:intl/intl.dart';
+import 'package:expense_tracker/widgets/user_transaction.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyHomePage());
 
 class MyHomePage extends StatelessWidget {
-  final List<Transcation> transaction = [
-    Transcation(
-      id: 't1',
-      title: 'Shoes',
-      amount: 3000,
-      date: DateTime.now(),
-    ),
-    Transcation(
-      id: 't2',
-      title: 'Dress',
-      amount: 500,
-      date: DateTime.now(),
-    )
-  ];
-
   @override
   Widget build(BuildContext context) {
-    String titleInput = '';
-    String amountInput = '';
+    //String titleInput = '';
+    //String amountInput = '';
+    //final titleController = TextEditingController();
+    //final amountController = TextEditingController();
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -31,107 +17,36 @@ class MyHomePage extends StatelessWidget {
           backgroundColor: Colors.blue,
           foregroundColor: Colors.white,
           centerTitle: true,
-        ),
-        body: Column(
-          //mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Card(
-              color: Colors.amber,
-              child: Container(
-                child: Text('chart!'),
-                width: double.infinity,
-              ),
-              elevation: 10,
-            ),
-            Card(
-              elevation: 5,
-              child: Container(
-                padding: EdgeInsets.all(10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    TextField(
-                      decoration: InputDecoration(
-                        labelText: 'Title',
-                      ),
-                      onChanged: (val) {
-                        titleInput = val;
-                      },
-                    ),
-                    TextField(
-                      decoration: InputDecoration(
-                        labelText: 'Amount',
-                      ),
-                      onChanged: (val) => amountInput = val,
-                    ),
-                    TextButton(
-                        onPressed: () {
-                          print(titleInput);
-                          print(amountInput);
-                        },
-                        child: Text(
-                          'Add Transaction',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
-                            color: Colors.purple,
-                          ),
-                        ))
-                  ],
-                ),
-              ),
-            ), // text filed is to take user input
-            Column(
-              children: transaction.map((tx) {
-                return Card(
-                  child: Row(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 15),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.purple,
-                            width: 2,
-                          ),
-                        ),
-                        padding: const EdgeInsets.all(10),
-                        child: Text(
-                          '\₹' + tx.amount.toString(),
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.purple,
-                          ),
-                        ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            tx.title,
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Text(
-                            DateFormat().format(tx.date),
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: const Color.fromARGB(255, 133, 133, 133),
-                            ),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                );
-              }).toList(),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.add),
             )
           ],
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            //mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Card(
+                color: Colors.amber,
+                child: Container(
+                  child: Text('chart!'),
+                  width: double.infinity,
+                ),
+                elevation: 10,
+              ),
+              UserTransaction()
+            ],
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+          onPressed: () {},
         ),
       ),
     );
